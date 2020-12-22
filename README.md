@@ -5,7 +5,7 @@
 
 **github pages**
 
-* [Ссылка на git hub pages]
+* https://kalenimal.github.io/mesto/index.html
 
 **Использованные технологии**
 Работа написанна на HTML, CSS, JS
