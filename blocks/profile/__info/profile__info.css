@@ -10,7 +10,7 @@ row-gap: 16px;
 align-items: center;
 }
 
-@media all and (max-width: 336px) {
+@media all and (max-width: 640px) {
 .profile__info {
 justify-items: center;
 grid-template-columns: 189px 18px;

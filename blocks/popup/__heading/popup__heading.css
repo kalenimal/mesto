@@ -8,7 +8,7 @@ margin: 0;
 padding-bottom: 54px;
 }
 
-@media all and (max-width: 320px) {
+@media all and (max-width: 640px) {
 .popup__heading {
 font-size: 18px;
 line-height: 22px;
