@@ -1,20 +1,23 @@
 .profile__info {
-max-width: 336px;
 display: grid;
-grid-template-columns: 294px 24px;
+grid-template-columns: 120px 294px 24px;
 grid-template-rows: min-content min-content;
-grid-template-areas: 
-"title edit__button"
-"subtitle subtitle";
+grid-template-areas:
+"avatar title edit__button"
+"avatar subtitle subtitle";
 column-gap: 18px;
 row-gap: 16px;
 align-items: center;
-padding: 22px 0 0 30px;
 }
 
 @media all and (max-width: 336px) {
 .profile__info {
+justify-items: center;
 grid-template-columns: 189px 18px;
+grid-template-areas: 
+"avatar avatar"
+"title edit__button"
+"subtitle subtitle";
 column-gap: 10px;
 row-gap: 14px;
 padding-bottom: 36px;

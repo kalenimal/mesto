@@ -1,4 +1,5 @@
 .profile__image {
 max-height: 120px;
 border-radius: 122px;
+grid-area: avatar;
 }
