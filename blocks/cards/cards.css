@@ -3,9 +3,9 @@
   margin: 0 auto;
   padding-top: 51px;
 }
-  
-  @media all and (max-width: 640px) {
+
+@media all and (max-width: 640px) {
   .cards {
-  padding-top: 36px;
-}
+    padding-top: 36px;
+  }
 }

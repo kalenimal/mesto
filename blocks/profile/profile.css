@@ -9,9 +9,8 @@
 
 @media all and (max-width: 640px) {
   .profile {
-      padding-top: 42px;
-      max-width: 282px;
-      flex-wrap: wrap;
-      justify-content: center;
+    padding-top: 42px;
+    max-width: 282px;
+    justify-content: center;
   }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,83 +10,90 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>MESTO</title>
 </head>
+
 <body class="page">
   <header class="header">
     <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
   </header>
-  <section class="profile">
-    <div class="profile__info">
-      <img src="./images/profile-image.jpg" alt="аватар профиля" class="profile__image">
-      <h1 class="profile__title">Жак-Ив Кусто</h1>
-      <p class="profile__subtitle">Исследователь океана</p>
-      <div class="profile__edit-button">      </div>
-    </div>
-    <div class="profile__add-button">
-      <div class="profile__add-symbol"></div>
-    </div>
-  </section>
-  <section class="cards">
-    <ul class="cards__items">
-      <li class="cards__item">
-        <img src="./images/Karachaevsk.png" class="cards__image" alt="заброшенная церковь в низине холмов в Карачаевске">
-        <div class="cards__bottom">
-          <h2 class="cards__title">Карачаевск</h2>
-          <div class="cards__like-button"></div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <img src="./images/Elbrus.png" class="cards__image" alt="Плато на эльбрусе">
-        <div class="cards__bottom">
-          <h2 class="cards__title">Гора Эльбрус</h2>
-          <div class="cards__like-button"></div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <img src="./images/Dombai.png" class="cards__image" alt="Горы в Домбае">
-        <div class="cards__bottom">
-          <h2 class="cards__title">Домбай</h2>
-          <div class="cards__like-button"></div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <img src="./images/Elbrus.png" class="cards__image" alt="Плато на эльбрусе">
-        <div class="cards__bottom">
-          <h2 class="cards__title">Гора Эльбрус</h2>
-          <div class="cards__like-button"></div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <img src="./images/Dombai.png" class="cards__image" alt="Горы в Домбае">
-        <div class="cards__bottom">
-          <h2 class="cards__title">Домбай</h2>
-          <div class="cards__like-button"></div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <img src="./images/Karachaevsk.png" class="cards__image" alt="заброшенная церковь в низине холмов в Карачаевске">
-        <div class="cards__bottom">
-          <h2 class="cards__title">Карачаево-Черкесская Республика</h2>
-          <div class="cards__like-button"></div>
-        </div>
-      </li>
-    </ul>
-  </section>
+  <main>
+    <section class="profile">
+      <div class="profile__info">
+        <img src="./images/profile-image.jpg" alt="аватар профиля" class="profile__image">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <p class="profile__subtitle">Исследователь океана</p>
+        <button class="profile__edit-button"></button>
+      </div>
+      <button class="profile__add-button">
+      </button>
+    </section>
+    <section class="cards">
+      <ul class="cards__items">
+        <li class="cards__item">
+          <img src="./images/Karachaevsk.png" class="cards__image"
+            alt="заброшенная церковь в низине холмов в Карачаевске">
+          <div class="cards__footer">
+            <h2 class="cards__title">Карачаевск</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="./images/Elbrus.png" class="cards__image" alt="Плато на эльбрусе">
+          <div class="cards__footer">
+            <h2 class="cards__title">Гора Эльбрус</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="./images/Dombai.png" class="cards__image" alt="Горы в Домбае">
+          <div class="cards__footer">
+            <h2 class="cards__title">Домбай</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="./images/Elbrus.png" class="cards__image" alt="Плато на эльбрусе">
+          <div class="cards__footer">
+            <h2 class="cards__title">Гора Эльбрус</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="./images/Dombai.png" class="cards__image" alt="Горы в Домбае">
+          <div class="cards__footer">
+            <h2 class="cards__title">Домбай</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__item">
+          <img src="./images/Karachaevsk.png" class="cards__image"
+            alt="заброшенная церковь в низине холмов в Карачаевске">
+          <div class="cards__footer">
+            <h2 class="cards__title">Карачаево-Черкесская Республика</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
   <footer class="footer">
     <p class="footer__copyright">© 2020 Kalinkin Kirill</p>
   </footer>
   <section class="popup">
-    <form class="popup__container">
-      <div class="popup__close-button"></div>
-      <h2 class="popup__heading">Редактировать профиль</h2>
-      <fieldset class="popup__input-container">
-        <input type="text" class="popup__input" name="name">
-        <input type="text" class="popup__input" name="occupation">
-      </fieldset>
-      <fieldset class="popup__handlers">
-        <input type="submit" class="popup__button" value="Сохранить">
-      </fieldset>
-    </form>
+    <div class="popup__container">
+      <form class="popup__form" name="popup-form">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <fieldset class="popup__input-container">
+          <input type="text" class="popup__input" name="name" placeholder="Инокентий">
+          <input type="text" class="popup__input" name="occupation" placeholder="Дегустатор пива">
+        </fieldset>
+        <fieldset class="popup__handlers">
+          <input type="submit" class="popup__button" value="Сохранить">
+        </fieldset>
+      </form>
+    </div>
   </section>
   <script src="./scripts/script.js"></script>
 </body>
+
 </html>

@@ -7,6 +7,9 @@
   right: -40px;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: inherit;
+  border: 0;
+  padding: 0;
 }
 
 .popup__close-button:hover {
@@ -16,9 +19,9 @@
 
 @media all and (max-width: 640px) {
   .popup__close-button {
-      min-height: 21px;
-      min-width: 21px;
-      right: 6px;
-      background-size: contain;
+    min-height: 21px;
+    min-width: 21px;
+    right: 6px;
+    background-size: contain;
   }
 }

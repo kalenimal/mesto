@@ -8,6 +8,6 @@
 
 @media all and (max-width: 640px) {
   .popup__input-container {
-      padding: 0 0 45px 0;
+    padding: 0 0 45px 0;
   }
 }
