@@ -1,14 +1,14 @@
 .profile__add-symbol {
-background-image: url(../../../images/profile-add.svg);
-min-width: 22px;
-background-repeat: no-repeat;
-background-position: center;
+  background-image: url(../../../images/profile-add.svg);
+  min-width: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @media all and (max-width: 640px) {
-.profile__add-symbol {
-min-width: 16px;
-min-height: 16px;
-align-self: center;
-}
+  .profile__add-symbol {
+      min-width: 16px;
+      min-height: 16px;
+      align-self: center;
+  }
 }

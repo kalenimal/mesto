@@ -1,17 +1,17 @@
 .profile {
-display: flex;
-max-width: 880px;
-margin: 0 auto;
-padding-top: 40px;
-justify-content: space-between;
-flex-wrap: wrap;
+  display: flex;
+  max-width: 880px;
+  margin: 0 auto;
+  padding-top: 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 @media all and (max-width: 640px) {
-.profile {
-padding-top: 42px;
-max-width: 282px;
-flex-wrap: wrap;
-justify-content: center;
-}
+  .profile {
+      padding-top: 42px;
+      max-width: 282px;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
 }

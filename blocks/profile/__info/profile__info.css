@@ -1,25 +1,25 @@
 .profile__info {
-display: grid;
-grid-template-columns: 120px 294px 24px;
-grid-template-rows: min-content min-content;
-grid-template-areas:
-"avatar title edit__button"
-"avatar subtitle subtitle";
-column-gap: 18px;
-row-gap: 16px;
-align-items: center;
+  display: grid;
+  grid-template-columns: 120px 294px 24px;
+  grid-template-rows: min-content min-content;
+  grid-template-areas:
+      "avatar title edit__button"
+      "avatar subtitle subtitle";
+  column-gap: 18px;
+  row-gap: 16px;
+  align-items: center;
 }
 
 @media all and (max-width: 640px) {
-.profile__info {
-justify-items: center;
-grid-template-columns: 189px 18px;
-grid-template-areas: 
-"avatar avatar"
-"title edit__button"
-"subtitle subtitle";
-column-gap: 10px;
-row-gap: 14px;
-padding-bottom: 36px;
-}
+  .profile__info {
+      justify-items: center;
+      grid-template-columns: 189px 18px;
+      grid-template-areas:
+          "avatar avatar"
+          "title edit__button"
+          "subtitle subtitle";
+      column-gap: 10px;
+      row-gap: 14px;
+      padding-bottom: 36px;
+  }
 }

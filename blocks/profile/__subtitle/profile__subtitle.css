@@ -1,18 +1,18 @@
 .profile__subtitle {
-grid-area: subtitle;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 22px;
-color: #FFFFFF;
-margin: 0;
-align-self: start;
+  grid-area: subtitle;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin: 0;
+  align-self: start;
 }
 
 @media all and (max-width: 640px) {
-.profile__subtitle {
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-}
+  .profile__subtitle {
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+  }
 }
