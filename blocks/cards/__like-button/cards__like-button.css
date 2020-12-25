@@ -4,6 +4,7 @@
   min-height: 18.13px;
   border: 0;
   padding: 0;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .cards__like-button:hover {
