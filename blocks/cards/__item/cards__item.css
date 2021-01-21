@@ -1,4 +1,8 @@
 .cards__item {
   max-width: 100%;
   list-style: none;
+  position: relative;
+  height: 362px;
+  border-radius: 10px;
+  overflow: hidden;
 }
