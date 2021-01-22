@@ -26,27 +26,16 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="cards">
-      <ul class="cards__items">
-        <template class="template-card">
-          <li class="cards__item">
-            <img class="cards__image" alt="Фотография карточки">
-            <div class="cards__delet-button"></div>
-            <div class="cards__footer">
-              <h2 class="cards__title"></h2>
-              <button class="cards__like-button" type="button"></button>
-            </div>
-          </li>
-        </template>
-      </ul>
+      <ul class="cards__items"></ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2020 Kalinkin Kirill</p>
   </footer>
-  <section class="popup popup_type_edit-profile">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button class="popup__close-button close-edit" type="button"></button>
-      <form class="popup__form edit-form" name="popup-form">
+      <form class="popup__form" name="popup-form">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
           <input type="text" class="popup__input" name="name" placeholder="Инокентий">
@@ -57,11 +46,11 @@
         </fieldset>
       </form>
     </div>
-  </section>
-  <section class="popup popup_type_add">
+  </div>
+  <div class="popup popup_type_add">
     <div class="popup__container">
       <button class="popup__close-button close-add" type="button"></button>
-      <form class="popup__form add-form" name="popup-form">
+      <form class="popup__form" name="popup-form">
         <h2 class="popup__heading">Новое место</h2>
         <fieldset class="popup__input-container">
           <input type="text" class="popup__input" name="title" placeholder="Название">
@@ -72,14 +61,25 @@
         </fieldset>
       </form>
     </div>
-  </section>
-  <section class="popup popup_type_image">
+  </div>
+  <div class="popup popup_type_image">
     <div class="popup__image-container">
       <button class="popup__close-button close-img" type="button"></button>
       <img class="popup__img" src="#" alt="фото карточки">
       <p class="image-title"></p>
     </div>
-  </section>
+  </div>
+  <template class="template-card">
+    <li class="cards__item">
+      <img class="cards__image" alt="Фотография карточки">
+      <div class="cards__delet-button"></div>
+      <div class="cards__footer">
+        <h2 class="cards__title"></h2>
+        <button class="cards__like-button" type="button"></button>
+      </div>
+    </li>
+  </template>
+  <script src="./scripts/dataScript.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 
