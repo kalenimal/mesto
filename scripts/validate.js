@@ -65,8 +65,8 @@ input.addEventListener('input', () => {
 };
 
 //вызывают функцию навешивания слушателей инпутам во всех формах
-function enableValidation () {
-  const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
+function enableValidation (config) {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((form) => {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -75,4 +75,4 @@ function enableValidation () {
   });
 };
 
-enableValidation ();
+enableValidation (configValidation);
