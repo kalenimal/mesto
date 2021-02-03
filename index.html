@@ -37,12 +37,12 @@
       <form class="popup__form" name="popup-form" novalidate>
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
-          <input id="input__name" type="text" class="popup__input" name="name" placeholder="Инокентий" required
+          <input id="name" type="text" class="popup__input" name="name" placeholder="Инокентий" required
             minlength="2" maxlength="40">
-          <span class="input__name-error popup__error">rgggebd</span>
-          <input id="input__occupation" type="text" class="popup__input" name="occupation" placeholder="Дегустатор пива"
+          <span class="name-error popup__error">rgggebd</span>
+          <input id="occupation" type="text" class="popup__input" name="occupation" placeholder="Дегустатор пива"
             required minlength="2" maxlength="200">
-          <span class="input__occupation-error popup__error"></span>
+          <span class="occupation-error popup__error"></span>
         </fieldset>
         <fieldset class="popup__handlers">
           <input type="submit" class="popup__button" value="Сохранить">
@@ -56,10 +56,10 @@
       <form class="popup__form" name="popup-form" novalidate>
         <h2 class="popup__heading">Новое место</h2>
         <fieldset class="popup__input-container">
-          <input id="input__title" type="text" class="popup__input" name="title" placeholder="Название" required minlength="2" maxlength="30">
-          <span class="input__title-error popup__error"></span>
-          <input id="input__link" type="url" class="popup__input" name="Link" placeholder="Ссылка на картинку" required>
-          <span class="input__link-error popup__error"></span>
+          <input id="title" type="text" class="popup__input" name="title" placeholder="Название" required minlength="2" maxlength="30">
+          <span class="title-error popup__error"></span>
+          <input id="link" type="url" class="popup__input" name="Link" placeholder="Ссылка на картинку" required>
+          <span class="link-error popup__error"></span>
         </fieldset>
         <fieldset class="popup__handlers">
           <input type="submit" class="popup__button add-button" value="Создать">
@@ -76,7 +76,7 @@
   </div>
   <template class="template-card">
     <li class="cards__item">
-      <img class="cards__image" alt="Фотография карточки">
+      <img class="cards__image" src="#" alt="Фотография карточки">
       <div class="cards__delet-button"></div>
       <div class="cards__footer">
         <h2 class="cards__title"></h2>
