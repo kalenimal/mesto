@@ -8,27 +8,27 @@ const configValidation = {
 }; 
 
 //показывает инпут с ошибкой
-function showInputError (form, input, errorMessage) {
+function showInputError (form, input, errorMessage, config) {
   const inputError = form.querySelector(`.${input.id}-error`);
-  input.classList.add(configValidation.inputErrorClass);
-  inputError.classList.add(configValidation.errorClass);
+  input.classList.add(config.inputErrorClass);
+  inputError.classList.add(config.errorClass);
   inputError.textContent = errorMessage;
 }
 
 //показывает  инпут без ошибки
-function hideInputerror (form, input) {
+function hideInputerror (form, input, config) {
   const inputError = form.querySelector(`.${input.id}-error`);
-  input.classList.remove(configValidation.inputErrorClass);
-  inputError.classList.remove(configValidation.errorClass);
+  input.classList.remove(config.inputErrorClass);
+  inputError.classList.remove(config.errorClass);
   inputError.textContent = "";
 }
 
 //проверяет инпут на валидность 
-function checkValidity (form, input) {
+function checkValidity (form, input, config) {
   if (!input.validity.valid) {
-    showInputError (form, input, input.validationMessage);
+    showInputError (form, input, input.validationMessage, configValidation);
   } else {
-    hideInputerror (form, input);
+    hideInputerror (form, input, configValidation);
   }
 };
 
@@ -40,26 +40,26 @@ function hasInvalidInput(inputList) {
 };
 
 //меняет состояние кнопки
-function buttonState (inputList, button) {
+function buttonState (inputList, button, config) {
   if (hasInvalidInput(inputList)) {
-    button.classList.add(configValidation.inactiveButtonClass);
+    button.classList.add(config.inactiveButtonClass);
   } else {
-    button.classList.remove(configValidation.inactiveButtonClass);
+    button.classList.remove(config.inactiveButtonClass);
   }
 }
 
 
 //навешивает всем инпутам слушатель 
-function setEventListeners (form) {
-  const inputList = Array.from(form.querySelectorAll(configValidation.inputSelector));
-  const button = form.querySelector(configValidation.submitButtonSelector);
+function setEventListeners (form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  const button = form.querySelector(config.submitButtonSelector);
    
-  buttonState (inputList, button);
+  buttonState (inputList, button, configValidation);
 
   inputList.forEach((input) => {
 input.addEventListener('input', () => {
   checkValidity (form, input);
-  buttonState (inputList, button);
+  buttonState (inputList, button, configValidation);
 });
   });
 };
@@ -71,7 +71,7 @@ function enableValidation (config) {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners (form);
+    setEventListeners (form, config);
   });
 };
 
