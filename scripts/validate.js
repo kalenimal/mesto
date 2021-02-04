@@ -24,11 +24,11 @@ function hideInputerror (form, input, config) {
 }
 
 //проверяет инпут на валидность 
-function checkValidity (form, input, config) {
+function checkValidity (form, input,config) {
   if (!input.validity.valid) {
-    showInputError (form, input, input.validationMessage, configValidation);
+    showInputError (form, input, input.validationMessage, config);
   } else {
-    hideInputerror (form, input, configValidation);
+    hideInputerror (form, input, config);
   }
 };
 
@@ -54,12 +54,12 @@ function setEventListeners (form, config) {
   const inputList = Array.from(form.querySelectorAll(config.inputSelector));
   const button = form.querySelector(config.submitButtonSelector);
    
-  buttonState (inputList, button, configValidation);
+  buttonState (inputList, button, config);
 
   inputList.forEach((input) => {
 input.addEventListener('input', () => {
-  checkValidity (form, input);
-  buttonState (inputList, button, configValidation);
+  checkValidity (form, input, config);
+  buttonState (inputList, button, config);
 });
   });
 };
