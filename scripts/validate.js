@@ -7,6 +7,14 @@ const configValidation = {
   errorClass: 'popup__error_visible'
 }; 
 
+
+class FormValidator {
+  constructor (config, form) {
+
+  }
+}
+
+
 //показывает инпут с ошибкой
 function showInputError (form, input, errorMessage, config) {
   const inputError = form.querySelector(`.${input.id}-error`);
