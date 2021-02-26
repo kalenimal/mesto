@@ -1,3 +1,5 @@
+import {fillPopup} from './index.js';
+
 //класс для создания карты
 export class Card {
   constructor (data, cardSelector) {
@@ -54,3 +56,7 @@ export class Card {
     })
   }
   }
+
+  
+
+  

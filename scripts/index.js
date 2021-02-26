@@ -2,6 +2,9 @@ import {FormValidator} from "./validate.js";
 import {initialCards} from './dataScript.js';
 import {Card } from './card.js';
 
+
+
+
 const openButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupImg = document.querySelector('.popup_type_image');
@@ -55,7 +58,7 @@ initialReverse.forEach((item) => {
 
 
 //наполняет попап с картинкой
-function fillPopup(link, name) {
+export function fillPopup(link, name) {
   imageOfPopup.src = link;
   imageOfPopup.alt = name;
   titleOfPopupImage.textContent = name;
