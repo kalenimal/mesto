@@ -19,6 +19,30 @@ const imgLinkInput = popupAdd.querySelector('input[name="Link"]');
 const popups = document.querySelectorAll('.popup');
 const initialReverse = initialCards.reverse();
 
+import {initialCards} from './dataScript.js';
+
+const configValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}; 
+
+
+import {FormValidator} from "./validate.js";
+//создает класс для валидации формы 
+function doValidation() {
+  const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
+  formList.forEach((form) => {
+    const validation = new FormValidator(configValidation, form);
+    validation.enableValidation ();
+  }) 
+}
+
+doValidation()
+
 //класс для создания карты
 class Card {
 constructor (data, cardSelector) {
@@ -165,6 +189,7 @@ formAdd.addEventListener('submit', addFormSubmit);
 formEdit.addEventListener('submit', editFormSubmit);
 openButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
+
 
 
 
