@@ -1,4 +1,5 @@
-import {fillPopup} from './index.js';
+import {openPopup} from './index.js';
+
 
 //класс для создания карты
 export class Card {
@@ -22,15 +23,26 @@ export class Card {
   //наполняет карту данными
   generateCard () {
   this._element = this._getTemplate ();
+  const cardsImage = this._element.querySelector('.cards__image');
   this._element.querySelector('.cards__title').textContent = this._title;
-  this._element.querySelector('.cards__image').src = this._link;
-  this._element.querySelector('.cards__image').alt = this._title;
+  cardsImage.src = this._link;
+  cardsImage.alt = this._title;
   
   this._setEventListeners ()
   
   return this._element;
   }
-  
+
+  //наполняет попап с картинкой
+  _fillPopup(link, name) {
+    const popupImg = document.querySelector('.popup_type_image');
+    const popupImageTitle = popupImg.querySelector('.popup__img');
+
+    popupImageTitle.src = link;
+    popupImageTitle.alt = name;
+    popupImg.querySelector('.image-title').textContent = name;
+    openPopup(popupImg);
+  }
   //ставит лайк
   _handleLike () {
     this._element.querySelector('.cards__like-button').classList.toggle('cards__like-button_active');
@@ -52,7 +64,7 @@ export class Card {
     });
   
     this._element.querySelector('.cards__image').addEventListener('click', () => {
-      fillPopup(this._link, this._title);
+      this._fillPopup(this._link, this._title);
     })
   }
   }

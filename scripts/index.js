@@ -1,16 +1,12 @@
-import {FormValidator} from "./validate.js";
+import {FormValidator} from "./Validate.js";
 import {initialCards} from './dataScript.js';
-import {Card } from './card.js';
+import {Card } from './Card.js';
 
 
 
 
 const openButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const popupImg = document.querySelector('.popup_type_image');
-const imageOfPopup = popupImg.querySelector('.popup__img');
-const titleOfPopupImage = popupImg.querySelector('.image-title');
-const createButton = document.querySelector('.add-button');
 const popupEdit = document.querySelector('.popup_type_edit-profile');
 const popupAdd = document.querySelector('.popup_type_add');
 const nameInput = popupEdit.querySelector('input[name="name"]');
@@ -19,7 +15,6 @@ const formEdit = popupEdit.querySelector('.popup__form');
 const formAdd = popupAdd.querySelector('.popup__form');
 const name = document.querySelector('.profile__title');
 const job = document.querySelector('.profile__subtitle');
-const cardTemplate = document.querySelector('.template-card').content;
 const cardsList = document.querySelector('.cards__items');
 const imgTitleInput = popupAdd.querySelector('input[name="title"]');
 const imgLinkInput = popupAdd.querySelector('input[name="Link"]');
@@ -57,14 +52,6 @@ initialReverse.forEach((item) => {
 })
 
 
-//наполняет попап с картинкой
-export function fillPopup(link, name) {
-  imageOfPopup.src = link;
-  imageOfPopup.alt = name;
-  titleOfPopupImage.textContent = name;
-  openPopup(popupImg);
-};
-
 //открывает попап с редактированием профиля
 function openPopupEdit() {
   nameInput.value = name.textContent;
@@ -74,19 +61,22 @@ function openPopupEdit() {
 
 //открывает попап с добавлением карточки
 function openPopupAdd() {
-  imgTitleInput.value = null;
-  imgLinkInput.value = null;
+  formAdd.reset();
+  const submitButtonSelector = popupAdd.querySelector(configValidation.submitButtonSelector);
+  submitButtonSelector.classList.add(configValidation.inactiveButtonClass);
+  submitButtonSelector.setAttribute('disabled', 'disabled')
   openPopup(popupAdd);
+
 }
 //открывает попап 
-function openPopup(item) {
+export function openPopup(item) {
   item.classList.toggle('popup_active');
   document.addEventListener('keydown', escClosePopup);
 }
 
 //закрывает попап по нажатию на ESC
 function escClosePopup (evt) {
-    if (evt.keyCode === 27) {
+    if (evt.key === "Escape") {
       const openedPopup = document.querySelector('.popup_active');
       closePopup(openedPopup);
     }
@@ -102,9 +92,7 @@ function closePopup(item) {
 function closeByOverlayAndButton () {
   popups.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup_active')) {
-        closePopup(popup);
-      } if (evt.target.classList.contains('popup__close-button')) {
+      if ((evt.target.classList.contains('popup_active')) || (evt.target.classList.contains('popup__close-button'))) {
         closePopup(popup);
       }
     })

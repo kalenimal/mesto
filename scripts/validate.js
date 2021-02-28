@@ -46,8 +46,10 @@ _hasInvalidInput(inputList) {
 _buttonState (inputList, button) {
   if (this._hasInvalidInput(inputList)) {
     button.classList.add(this._inactiveButtonClass);
+    button.setAttribute('disabled', 'disabled');
   } else {
     button.classList.remove(this._inactiveButtonClass);
+    button.removeAttribute('disabled')
   }
 }
 
