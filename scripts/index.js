@@ -21,7 +21,7 @@ const name = document.querySelector('.profile__title');
 const job = document.querySelector('.profile__subtitle');
 const cardsList = document.querySelector('.cards__items');
 const imgTitleInput = popupAdd.querySelector('input[name="name"]');
-const imgLinkInput = popupAdd.querySelector('input[name="Link"]');
+const imgLinkInput = popupAdd.querySelector('input[name="link"]');
 const popups = document.querySelectorAll('.popup');
 const initialReverse = initialCards.reverse();
 
@@ -48,14 +48,16 @@ renderer: (cardItem) => {
 cardList.renderItems();
 
 //создает новую карту из формы
-const frmCard = new PopupWithForm (formAdd, {handleFormSubmit: (data) => {
+const frmCard = new PopupWithForm (popupAdd, {handleFormSubmit: (data) => {
 const card = new Card(data, '.template-card');
 const newCard = card.generateCard();
 
-cardsList.prepend(newCard);
-//cardList.addItem(newCard);
-
+cardList.addItem(newCard);
+frmCard.close()
 }})
+
+frmCard.setEventListeners();
+
 
 
 //создает класс для валидации формы 

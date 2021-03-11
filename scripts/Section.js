@@ -11,6 +11,6 @@ export class Section {
       })
     }
     addItem(el) {
-      this._contSel.append(el);
+      this._contSel.prepend(el);
     }
   }
