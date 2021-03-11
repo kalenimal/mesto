@@ -50,6 +50,7 @@ _buttonState (inputList, button) {
   } else {
     button.classList.remove(this._inactiveButtonClass);
     button.removeAttribute('disabled')
+    
   }
 }
 

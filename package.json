@@ -1,0 +1,20 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Данный проект представляет собой платформу для публикации фотографий. На данном этапе пользователь может изменить свое имя в профиле и род деятельности. В будущем планируется осуществить возможность для пользователя добавлять фотографии в профиль и ставить лайки.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalenimal/mesto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalenimal/mesto/issues"
+  },
+  "homepage": "https://github.com/kalenimal/mesto#readme"
+}

@@ -1,6 +1,10 @@
 import {FormValidator} from "./Validate.js";
 import {initialCards} from './dataScript.js';
 import {Card } from './Card.js';
+import {Section} from './Section.js';
+import {Popup} from './Popup.js';
+import {PopupWithImage} from './PopupWithImage.js';
+import {PopupWithForm} from './PopupWithForm.js';
 
 
 
@@ -16,7 +20,7 @@ const formAdd = popupAdd.querySelector('.popup__form');
 const name = document.querySelector('.profile__title');
 const job = document.querySelector('.profile__subtitle');
 const cardsList = document.querySelector('.cards__items');
-const imgTitleInput = popupAdd.querySelector('input[name="title"]');
+const imgTitleInput = popupAdd.querySelector('input[name="name"]');
 const imgLinkInput = popupAdd.querySelector('input[name="Link"]');
 const popups = document.querySelectorAll('.popup');
 const initialReverse = initialCards.reverse();
@@ -32,6 +36,28 @@ const configValidation = {
 }; 
 
 
+//создает  карты из начального массива
+const cardList = new Section ({items: initialReverse,
+renderer: (cardItem) => {
+  const newCard = new Card(cardItem, '.template-card');
+  const card = newCard.generateCard();
+
+  cardList.addItem(card);
+}}, cardsList)
+
+cardList.renderItems();
+
+//создает новую карту из формы
+const frmCard = new PopupWithForm (formAdd, {handleFormSubmit: (data) => {
+const card = new Card(data, '.template-card');
+const newCard = card.generateCard();
+
+cardsList.prepend(newCard);
+//cardList.addItem(newCard);
+
+}})
+
+
 //создает класс для валидации формы 
 function doValidation() {
   const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
@@ -42,14 +68,6 @@ function doValidation() {
 }
 
 doValidation()
-
-//создает класс карты 
-initialReverse.forEach((item) => {
-  const newCard = new Card(item, '.template-card');
-  const card = newCard.generateCard();
-
-  cardsList.prepend(card);
-})
 
 
 //открывает попап с редактированием профиля
@@ -64,13 +82,16 @@ function openPopupAdd() {
   formAdd.reset();
   const submitButtonSelector = popupAdd.querySelector(configValidation.submitButtonSelector);
   submitButtonSelector.classList.add(configValidation.inactiveButtonClass);
-  submitButtonSelector.setAttribute('disabled', 'disabled')
+  submitButtonSelector.setAttribute('disabled', 'disabled');
   openPopup(popupAdd);
 
 }
+
+
 //открывает попап 
 export function openPopup(item) {
-  item.classList.toggle('popup_active');
+
+  item.classList.add('popup_active');
   document.addEventListener('keydown', escClosePopup);
 }
 
@@ -109,7 +130,7 @@ function editFormSubmit(evt) {
 }
 
 //передает значения инпутов новой карточки
-function addFormSubmit(evt) {
+/* function addFormSubmit(evt) {
   evt.preventDefault();
   const cardData = {};
   cardData.name = imgTitleInput.value;
@@ -119,10 +140,10 @@ function addFormSubmit(evt) {
 
   cardsList.prepend(card);
   closePopup(popupAdd);
-}
+} */
 
 
-formAdd.addEventListener('submit', addFormSubmit);
+//formAdd.addEventListener('submit', addFormSubmit);
 formEdit.addEventListener('submit', editFormSubmit);
 openButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
