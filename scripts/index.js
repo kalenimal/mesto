@@ -5,6 +5,7 @@ import {Section} from './Section.js';
 import {Popup} from './Popup.js';
 import {PopupWithImage} from './PopupWithImage.js';
 import {PopupWithForm} from './PopupWithForm.js';
+import {UserInfo} from './UserInfo.js';
 
 
 
@@ -12,9 +13,10 @@ import {PopupWithForm} from './PopupWithForm.js';
 const openButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit-profile');
+const popupImg = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add');
 const nameInput = popupEdit.querySelector('input[name="name"]');
-const jobInput = popupEdit.querySelector('input[name="occupation"]');
+const jobInput = popupEdit.querySelector('input[name="info"]');
 const formEdit = popupEdit.querySelector('.popup__form');
 const formAdd = popupAdd.querySelector('.popup__form');
 const name = document.querySelector('.profile__title');
@@ -35,11 +37,16 @@ const configValidation = {
   errorClass: 'popup__error_visible'
 }; 
 
+//создает класс попапа с картинкой
+const imgPopup = new PopupWithImage (popupImg);
 
 //создает  карты из начального массива
 const cardList = new Section ({items: initialReverse,
 renderer: (cardItem) => {
-  const newCard = new Card(cardItem, '.template-card');
+  const newCard = new Card(cardItem, '.template-card', {handleCardClick: (link, title) => {
+
+    imgPopup.open(link, title);
+  }});
   const card = newCard.generateCard();
 
   cardList.addItem(card);
@@ -49,7 +56,10 @@ cardList.renderItems();
 
 //создает новую карту из формы
 const frmCard = new PopupWithForm (popupAdd, {handleFormSubmit: (data) => {
-const card = new Card(data, '.template-card');
+const card = new Card(data, '.template-card', {handleCardClick: (link, title) => {
+
+  imgPopup.open(link, title);
+}});
 const newCard = card.generateCard();
 
 cardList.addItem(newCard);
@@ -57,6 +67,19 @@ frmCard.close()
 }})
 
 frmCard.setEventListeners();
+
+
+//создает класс для отображения инфо о пользователе
+const newUsrInf = new UserInfo ({name: name, info: job});
+
+//добавляет информацию о пользователе
+const userInfo = new PopupWithForm (popupEdit, {handleFormSubmit: (data) => {
+
+  newUsrInf.setUserInfo(data);
+  userInfo.close()
+  
+}})
+userInfo.setEventListeners();
 
 
 
@@ -71,13 +94,6 @@ function doValidation() {
 
 doValidation()
 
-
-//открывает попап с редактированием профиля
-function openPopupEdit() {
-  nameInput.value = name.textContent;
-  jobInput.value = job.textContent;
-  openPopup(popupEdit)
-}
 
 //открывает попап с добавлением карточки
 function openPopupAdd() {
@@ -123,31 +139,10 @@ function closeByOverlayAndButton () {
 }
 
 closeByOverlayAndButton ();
-//передает значения инпутов редактирования профиля в теги
-function editFormSubmit(evt) {
-  evt.preventDefault();
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
-  closePopup(popupEdit);
-}
-
-//передает значения инпутов новой карточки
-/* function addFormSubmit(evt) {
-  evt.preventDefault();
-  const cardData = {};
-  cardData.name = imgTitleInput.value;
-  cardData.link = imgLinkInput.value;
-  const newCard = new Card(cardData, '.template-card');
-  const card = newCard.generateCard();
-
-  cardsList.prepend(card);
-  closePopup(popupAdd);
-} */
 
 
-//formAdd.addEventListener('submit', addFormSubmit);
-formEdit.addEventListener('submit', editFormSubmit);
-openButton.addEventListener('click', openPopupEdit);
+
+openButton.addEventListener('click', () => {userInfo.open()});
 addButton.addEventListener('click', openPopupAdd);
 
 
