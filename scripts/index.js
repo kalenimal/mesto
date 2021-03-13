@@ -17,14 +17,9 @@ const popupImg = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add');
 const nameInput = popupEdit.querySelector('input[name="name"]');
 const jobInput = popupEdit.querySelector('input[name="info"]');
-const formEdit = popupEdit.querySelector('.popup__form');
-const formAdd = popupAdd.querySelector('.popup__form');
 const name = document.querySelector('.profile__title');
 const job = document.querySelector('.profile__subtitle');
 const cardsList = document.querySelector('.cards__items');
-const imgTitleInput = popupAdd.querySelector('input[name="name"]');
-const imgLinkInput = popupAdd.querySelector('input[name="link"]');
-const popups = document.querySelectorAll('.popup');
 const initialReverse = initialCards.reverse();
 
 
@@ -39,6 +34,9 @@ const configValidation = {
 
 //создает класс попапа с картинкой
 const imgPopup = new PopupWithImage (popupImg);
+imgPopup.setEventListeners();
+
+
 
 //создает  карты из начального массива
 const cardList = new Section ({items: initialReverse,
@@ -47,6 +45,7 @@ renderer: (cardItem) => {
 
     imgPopup.open(link, title);
   }});
+  
   const card = newCard.generateCard();
 
   cardList.addItem(card);
@@ -63,7 +62,8 @@ const card = new Card(data, '.template-card', {handleCardClick: (link, title) =>
 const newCard = card.generateCard();
 
 cardList.addItem(newCard);
-frmCard.close()
+frmCard.close();
+
 }})
 
 frmCard.setEventListeners();
@@ -76,9 +76,10 @@ const newUsrInf = new UserInfo ({name: name, info: job});
 const userInfo = new PopupWithForm (popupEdit, {handleFormSubmit: (data) => {
 
   newUsrInf.setUserInfo(data);
-  userInfo.close()
-  
+  userInfo.close();
 }})
+
+ 
 userInfo.setEventListeners();
 
 
@@ -95,55 +96,13 @@ function doValidation() {
 doValidation()
 
 
-//открывает попап с добавлением карточки
-function openPopupAdd() {
-  formAdd.reset();
+openButton.addEventListener('click', () => {userInfo.open();
+  jobInput.value = newUsrInf.getUserInfo().info;
+  nameInput.value = newUsrInf.getUserInfo().name});
+addButton.addEventListener('click', () => {frmCard.open();
   const submitButtonSelector = popupAdd.querySelector(configValidation.submitButtonSelector);
   submitButtonSelector.classList.add(configValidation.inactiveButtonClass);
-  submitButtonSelector.setAttribute('disabled', 'disabled');
-  openPopup(popupAdd);
-
-}
-
-
-//открывает попап 
-export function openPopup(item) {
-
-  item.classList.add('popup_active');
-  document.addEventListener('keydown', escClosePopup);
-}
-
-//закрывает попап по нажатию на ESC
-function escClosePopup (evt) {
-    if (evt.key === "Escape") {
-      const openedPopup = document.querySelector('.popup_active');
-      closePopup(openedPopup);
-    }
-}
-
-//закрывает попап
-function closePopup(item) {
-  item.classList.remove('popup_active');
-  document.removeEventListener('keydown', escClosePopup);
-}
-
-//закрывает попап по нажатию на оверлей и крестик
-function closeByOverlayAndButton () {
-  popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-      if ((evt.target.classList.contains('popup_active')) || (evt.target.classList.contains('popup__close-button'))) {
-        closePopup(popup);
-      }
-    })
-  })
-}
-
-closeByOverlayAndButton ();
-
-
-
-openButton.addEventListener('click', () => {userInfo.open()});
-addButton.addEventListener('click', openPopupAdd);
+  submitButtonSelector.setAttribute('disabled', 'disabled')});
 
 
 
