@@ -1,11 +1,12 @@
-import {FormValidator} from "../scripts/components/validate.js";
-import {initialCards} from '../scripts/Utils/dataScript.js';
-import {Card } from '../scripts/components/card.js';
-import {Section} from '../scripts/components/Section.js';
-import {Popup} from '../scripts/components/Popup.js';
-import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
-import {PopupWithForm} from '../scripts/components/PopupWithForm.js';
-import {UserInfo} from '../scripts/components/UserInfo.js';
+import {FormValidator} from "./scripts/components/validate.js";
+import {initialCards} from './scripts/Utils/dataScript.js';
+import {Card } from './scripts/components/card.js';
+import {Section} from './scripts/components/Section.js';
+import {Popup} from './scripts/components/Popup.js';
+import {PopupWithImage} from './scripts/components/PopupWithImage.js';
+import {PopupWithForm} from './scripts/components/PopupWithForm.js';
+import {UserInfo} from './scripts/components/UserInfo.js';
+import './pages/index.css'
 
 const openButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
