@@ -1,16 +1,17 @@
 //открывает и закрывает попап
 export class Popup {
     constructor(popupSelector) {
-      this._popupSelector = popupSelector;
+      this._popup = document.querySelector(popupSelector);
+      this._handleEscClose = this._handleEscClose.bind(this);
     }
     open() {
-      this._popupSelector.classList.add('popup_active');
-    document.addEventListener('keydown', (evt)=> this._handleEscClose(evt));
+      this._popup.classList.add('popup_active');
+    document.addEventListener('keydown', this._handleEscClose);
     }
   
     close() {
-      this._popupSelector.classList.remove('popup_active');
-    document.removeEventListener('keydown',(evt)=> this._handleEscClose(evt));
+      this._popup.classList.remove('popup_active');
+    document.removeEventListener('keydown',this._handleEscClose);
     }
     _handleEscClose(evt) {
       if (evt.key === "Escape") {
@@ -18,7 +19,7 @@ export class Popup {
       }
     }
     setEventListeners() {
-      this._popupSelector.addEventListener('click', (evt) => {
+      this._popup.addEventListener('click', (evt) => {
         if ((evt.target.classList.contains('popup_active')) || (evt.target.classList.contains('popup__close-button'))) {
           this.close();
         }

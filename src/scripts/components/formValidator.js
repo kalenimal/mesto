@@ -19,7 +19,7 @@ _showInputError (input, errorMessage) {
 }
 
 //показывает  инпут без ошибки
-_hideInputerror (input) {
+_hideInputError (input) {
   const inputError = this._form.querySelector(`.${input.id}-error`);
   input.classList.remove(this._inputErrorClass);
   inputError.classList.remove(this._errorClass);
@@ -31,7 +31,7 @@ _checkValidity (input) {
   if (!input.validity.valid) {
     this._showInputError (input, input.validationMessage);
   } else {
-    this._hideInputerror (input);
+    this._hideInputError (input);
   }
 };
 
@@ -66,6 +66,13 @@ _setEventListeners () {
 input.addEventListener('input', () => {
   this._checkValidity (input);
   this._buttonState (inputList, button);
+
+  this._form.addEventListener('reset', () => {
+    inputList.forEach((input) => {
+        this._hideInputError(input)
+        this._buttonState(inputList, button);
+    })
+});
 });
   });
 };

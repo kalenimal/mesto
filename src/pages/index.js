@@ -1,12 +1,12 @@
-import {FormValidator} from "./scripts/components/validate.js";
-import {initialCards} from './scripts/Utils/dataScript.js';
-import {Card } from './scripts/components/card.js';
-import {Section} from './scripts/components/Section.js';
-import {Popup} from './scripts/components/Popup.js';
-import {PopupWithImage} from './scripts/components/PopupWithImage.js';
-import {PopupWithForm} from './scripts/components/PopupWithForm.js';
-import {UserInfo} from './scripts/components/UserInfo.js';
-import './pages/index.css'
+import {FormValidator} from "../scripts/components/formValidator.js";
+import {initialCards} from '../scripts/utils/dataScript.js';
+import {Card } from '../scripts/components/Card.js';
+import {Section} from '../scripts/components/Section.js';
+import {Popup} from '../scripts/components/Popup.js';
+import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
+import {PopupWithForm} from '../scripts/components/PopupWithForm.js';
+import {UserInfo} from '../scripts/components/UserInfo.js';
+import './index.css'
 
 const openButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -31,35 +31,33 @@ const configValidation = {
 }; 
 
 //создает класс попапа с картинкой
-const imgPopup = new PopupWithImage (popupImg);
+const imgPopup = new PopupWithImage ('.popup_type_image');
 imgPopup.setEventListeners();
 
 
-
-//создает  карты из начального массива
-const cardList = new Section ({items: initialReverse,
-renderer: (cardItem) => {
-  const newCard = new Card(cardItem, '.template-card', {handleCardClick: (link, title) => {
+//создает карточку 
+function createCard(data) {
+  const card = new Card(data, '.template-card', {handleCardClick: (link, title) => {
 
     imgPopup.open(link, title);
   }});
-  
-  const card = newCard.generateCard();
 
-  cardList.addItem(card);
+  return card.generateCard()
+
+}
+//создает  карты из начального массива
+const cardList = new Section ({items: initialReverse,
+renderer: (cardItem) => {
+
+  cardList.addItem(createCard(cardItem));
 }}, cardsList)
 
 cardList.renderItems();
 
 //создает новую карту из формы
-const frmCard = new PopupWithForm (popupAdd, {handleFormSubmit: (data) => {
-const card = new Card(data, '.template-card', {handleCardClick: (link, title) => {
+const frmCard = new PopupWithForm ('.popup_type_add', {handleFormSubmit: (data) => {
 
-  imgPopup.open(link, title);
-}});
-const newCard = card.generateCard();
-
-cardList.addItem(newCard);
+cardList.addItem(createCard(data));
 frmCard.close();
 
 }})
@@ -71,7 +69,7 @@ frmCard.setEventListeners();
 const newUsrInf = new UserInfo ({name: name, info: job});
 
 //добавляет информацию о пользователе
-const userInfo = new PopupWithForm (popupEdit, {handleFormSubmit: (data) => {
+const userInfo = new PopupWithForm ('.popup_type_edit-profile', {handleFormSubmit: (data) => {
 
   newUsrInf.setUserInfo(data);
   userInfo.close();
