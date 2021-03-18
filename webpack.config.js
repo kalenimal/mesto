@@ -12,6 +12,7 @@ output: {
           publicPath: ''
 },
 mode: 'development',
+devtool: 'source-map',
 devServer: {
   contentBase: path.resolve(__dirname, './dist'), 
   compress: true, 
