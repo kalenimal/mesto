@@ -1,4 +1,5 @@
 .cards__like-button {
+  display: block;
   background-image: url(../../../images/like-button.svg);
   min-width: 20.76px;
   min-height: 18.13px;

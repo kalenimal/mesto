@@ -1,5 +1,8 @@
 .profile__image {
-  max-height: 120px;
+  min-height: 120px;
+  max-width: 120px;
+  object-fit: cover;
   border-radius: 122px;
   grid-area: avatar;
 }
+

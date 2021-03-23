@@ -1,4 +1,3 @@
-
 //класс для создания карты
 export class Card {
   constructor (data, cardSelector, {handleCardClick}) {
@@ -57,7 +56,3 @@ export class Card {
     })
   }
   }
-
-  
-
-  

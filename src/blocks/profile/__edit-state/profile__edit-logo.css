@@ -1,0 +1,17 @@
+.profile__edit-logo {
+  min-height: 120px;
+  background-image: url('../../../images/edit-button.svg');
+opacity: 0;
+  position: absolute;
+  min-width: 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px;
+  top: 0;
+
+}
+
+.profile__edit-logo:hover {
+  opacity: .8;
+  background-color: black;
+}

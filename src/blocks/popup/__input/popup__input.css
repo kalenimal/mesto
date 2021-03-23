@@ -1,4 +1,5 @@
 .popup__input {
+  display: flex;
   border: 0;
   width: 100%;
   min-height: 27px;

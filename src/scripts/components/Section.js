@@ -1,11 +1,11 @@
 //отрисовывает элемент на странице 
 export class Section {
-    constructor({items, renderer}, contSel) {
-      this._InitialItems = items;
+    constructor({renderer}, contSel) {
       this._contSel = contSel;
       this._renderer = renderer;
     }
-    renderItems() {
+    renderItems(items) {
+      this._InitialItems = items;
       this._InitialItems.forEach((item) => {
         this._renderer(item);
       })

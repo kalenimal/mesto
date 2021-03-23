@@ -1,8 +1,9 @@
 //изменяет информацию о пользователе на странице
 export class UserInfo {
-  constructor ({name, info}){
+  constructor ({name, info, avatar}){
     this._name = name;
     this._info = info;
+    this._avatar = avatar;
   }
   getUserInfo() {
     this._userData = {};
@@ -12,7 +13,13 @@ export class UserInfo {
     return this._userData;
   }
   setUserInfo(newData) {
+    if (newData.hasOwnProperty('avatar')){
     this._name.textContent = newData.name;
     this._info.textContent = newData.info;
+    this._avatar.src = newData.avatar;
+    } else {
+      this._name.textContent = newData.name;
+    this._info.textContent = newData.info;
+    }
   }
 }
