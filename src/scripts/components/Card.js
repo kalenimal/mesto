@@ -1,10 +1,12 @@
 //класс для создания карты
 export class Card {
-  constructor (data, cardSelector, {handleCardClick}) {
+  constructor (data, cardSelector, {handleCardClick, handleTrashClick}) {
     this._title = data.name;
     this._link = data.link;
+    this._likesAmount = data.likes.length; 
     this._cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
+    this.handleTrashClick = handleTrashClick;
   } 
   
   //возвращает разметку
@@ -23,6 +25,7 @@ export class Card {
   this._element = this._getTemplate ();
   const cardsImage = this._element.querySelector('.cards__image');
   this._element.querySelector('.cards__title').textContent = this._title;
+  this._element.querySelector('.cards__likes-counter').textContent = this._likesAmount;
   cardsImage.src = this._link;
   cardsImage.alt = this._title;
   
@@ -38,7 +41,8 @@ export class Card {
   
   //удаляет карту 
   _handleDelete () {
-    this._element.querySelector('.cards__delet-button').closest('.cards__item').remove();
+    this._element.querySelector('.cards__delet-button').addEventListener('click', this.handleTrashClick);
+    /* this._element.querySelector('.cards__delet-button').closest('.cards__item').remove(); */
   }
   
   //навешивает слушатели 

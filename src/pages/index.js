@@ -51,7 +51,7 @@ api.getUserInfo()
 //берет данные о карточкаx с сервера 
 api.getIntlCards()
 .then (res => {
-  cardList.renderItems(res);
+  cardList.renderItems(res.reverse());
 })
 
 //создает класс попапа с сабмитом
@@ -87,7 +87,10 @@ function createCard(data) {
   const card = new Card(data, '.template-card', {handleCardClick: (link, title) => {
 
     imgPopup.open(link, title);
-  }});
+  },
+   handleTrashClick: () => {
+    popupSubmit.open();
+   }});
 
   return card.generateCard()
 
@@ -103,7 +106,10 @@ const cardList = new Section ({renderer: (cardItem) => {
 //создает новую карту из формы
 const frmCard = new PopupWithForm ('.popup_type_add', {handleFormSubmit: (data) => {
 
+api.postCard(data)
+
 cardList.addItem(createCard(data));
+
 frmCard.close();
 
 }})
