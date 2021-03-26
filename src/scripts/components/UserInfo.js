@@ -8,18 +8,18 @@ export class UserInfo {
   getUserInfo() {
     this._userData = {};
     this._userData.name = this._name.textContent;
-    this._userData.info = this._info.textContent;
+    this._userData.about = this._info.textContent;
 
     return this._userData;
   }
   setUserInfo(newData) {
     if (newData.hasOwnProperty('avatar')){
     this._name.textContent = newData.name;
-    this._info.textContent = newData.info;
+    this._info.textContent = newData.about;
     this._avatar.src = newData.avatar;
     } else {
       this._name.textContent = newData.name;
-    this._info.textContent = newData.info;
+    this._info.textContent = newData.about;
     }
   }
 }

@@ -16,13 +16,7 @@ export class Api {
       } 
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then ((res) => {
-      const prflData = {};
-      prflData.name = res.name
-       prflData.info = res.about
-       prflData.avatar = res.avatar
-       return prflData;
-})
+ 
   }
 
 //получает данные карточек с сервера
@@ -50,8 +44,15 @@ changeProf(data) {
     },
     body: JSON.stringify({
       name: data.name,
-      about: data.info
+      about: data.about
     })
+  })
+
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`)
   })
 }
 
@@ -66,8 +67,24 @@ postCard(data) {
     body: JSON.stringify({
       name: data.name,
       link: data.link,
-      likes: data.likes,
     })
+  })
+
+  .then (res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`)
+  })
+}
+
+// удаляет карту на сервере
+deleteCard(id) {
+  return fetch (`https://mesto.nomoreparties.co/v1/cohort-21/cards/${id}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: this._token
+    }
   })
 }
 }

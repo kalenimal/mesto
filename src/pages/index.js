@@ -18,13 +18,13 @@ const popupImg = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupAvatar =document.querySelector('.popup_type_avatar')
 const nameInput = popupEdit.querySelector('input[name="name"]');
-const jobInput = popupEdit.querySelector('input[name="info"]');
+const jobInput = popupEdit.querySelector('input[name="about"]');
 const name = document.querySelector('.profile__title');
 const job = document.querySelector('.profile__subtitle');
 const avatar = document.querySelector('.profile__image');
 const cardsList = document.querySelector('.cards__items');
 const editProfile = document.querySelector('.profile__avatar');
-
+let myId = {};
 
 const configValidation = {
   formSelector: '.popup__form',
@@ -46,6 +46,7 @@ const api = new Api (apiConfig);
 api.getUserInfo()
 .then ((res) => {
   newUsrInf.setUserInfo(res);
+  myId = res._id;
 })
 
 //берет данные о карточкаx с сервера 
@@ -55,11 +56,13 @@ api.getIntlCards()
 })
 
 //создает класс попапа с сабмитом
-const popupSubmit = new PopupWithSubmit ('.popup_type_delete', () => {
-  popupSubmit.close();
-})
+const popupSubmit = new PopupWithSubmit ('.popup_type_delete', {handleSubmit: (cardId) => {
+  api.deleteCard(cardId);
+  
+   popupSubmit.close(); 
+}})
 
-popupSubmit.setEventListeners();
+
 
 
 //меняет картинку аватара
@@ -85,14 +88,18 @@ imgPopup.setEventListeners();
 //создает карточку 
 function createCard(data) {
   const card = new Card(data, '.template-card', {handleCardClick: (link, title) => {
-
+    
     imgPopup.open(link, title);
   },
-   handleTrashClick: () => {
+   handleTrashClick: (data) => {
     popupSubmit.open();
-   }});
+    popupSubmit.setEventListeners(data) 
+   }
+  });
+   
+  
 
-  return card.generateCard()
+  return card.generateCard(myId)
 
 }
 //создает  карты из начального массива
@@ -106,9 +113,11 @@ const cardList = new Section ({renderer: (cardItem) => {
 //создает новую карту из формы
 const frmCard = new PopupWithForm ('.popup_type_add', {handleFormSubmit: (data) => {
 
-api.postCard(data)
+api.postCard(data) 
 
-cardList.addItem(createCard(data));
+.then ((res) => {
+   cardList.addItem(createCard(res)) ;
+})
 
 frmCard.close();
 
@@ -145,7 +154,7 @@ doValidation()
 
 
 openButton.addEventListener('click', () => {userInfo.open();
-  jobInput.value = newUsrInf.getUserInfo().info;
+  jobInput.value = newUsrInf.getUserInfo().about;
   nameInput.value = newUsrInf.getUserInfo().name});
 addButton.addEventListener('click', () => {frmCard.open();
   const submitButtonSelector = popupAdd.querySelector(configValidation.submitButtonSelector);
