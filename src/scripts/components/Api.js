@@ -87,4 +87,30 @@ deleteCard(id) {
     }
   })
 }
+
+//ставит лайк 
+postLike(cardId) {
+  return fetch (`https://mesto.nomoreparties.co/v1/cohort-21/cards/likes/${cardId}`,
+ { method: 'PUT',
+headers: {
+  authorization: this._token
+}
+})
+.then(res=> {
+  return res.json();
+})
+.then(res=> {
+  return res;
+})
+}
+
+//удаляет лайк
+deleteLike (cardId) {
+  return fetch (`https://mesto.nomoreparties.co/v1/cohort-21/cards/likes/${cardId}`,
+  { method: 'DELETE',
+ headers: {
+   authorization: this._token
+ }
+ })
+}
 }

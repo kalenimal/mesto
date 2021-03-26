@@ -1,14 +1,16 @@
 //класс для создания карты
 export class Card {
-  constructor (data, cardSelector, {handleCardClick, handleTrashClick}) {
+  constructor (data, cardSelector, {handleCardClick, handleTrashClick, handleLikeClick}) {
     this._title = data.name;
     this._link = data.link;
     this._owner = data.owner._id;
     this._cardId = data._id;
+    this._data = data;
     this._likesAmount = data.likes.length; 
     this._cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
     this.handleTrashClick = handleTrashClick;
+    this.handleLikeClick = handleLikeClick;
     this._element = this._getTemplate ();
   } 
   
@@ -42,10 +44,10 @@ export class Card {
     this._element.querySelector('.cards__like-button').classList.toggle('cards__like-button_active');
   }
   
-  //удаляет карту 
- /*   _handleDelete () {
+  //удаляет карту фронт
+   _handleDelete () {
     this._element.querySelector('.cards__delet-button').closest('.cards__item').remove();
-  }  */
+  } 
 
   //
   
@@ -59,7 +61,8 @@ _deletTrash(id) {
   //навешивает слушатели 
   _setEventListeners (id) {
     this._element.querySelector('.cards__like-button').addEventListener('click',() => {
-     this._handleLike ();
+     /* this._handleLike (); */
+     this.handleLikeClick(this._cardId, this._data.likes, this._owner);
     });
   if (id === this._owner) {
     this._element.querySelector('.cards__delet-button').addEventListener('click',()=> { this.handleTrashClick(this._cardId)})

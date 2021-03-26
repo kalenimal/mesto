@@ -55,13 +55,6 @@ api.getIntlCards()
   cardList.renderItems(res.reverse());
 })
 
-//создает класс попапа с сабмитом
-const popupSubmit = new PopupWithSubmit ('.popup_type_delete', {handleSubmit: (cardId) => {
-  api.deleteCard(cardId);
-  
-   popupSubmit.close(); 
-}})
-
 
 
 
@@ -94,8 +87,23 @@ function createCard(data) {
    handleTrashClick: (data) => {
     popupSubmit.open();
     popupSubmit.setEventListeners(data) 
+   },
+   handleLikeClick: (data, likes, ownerId) => {
+     if (likes.some(el => el._id === ownerId)){
+     api.deleteLike(data);
+   } else {
+    api.postLike(data);
    }
+  }
   });
+
+  //создает класс попапа с сабмитом
+const popupSubmit = new PopupWithSubmit ('.popup_type_delete', {handleSubmit: (cardId) => {
+  api.deleteCard(cardId);
+  card._handleDelete();
+  
+   popupSubmit.close(); 
+}})
    
   
 
