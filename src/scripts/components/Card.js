@@ -48,14 +48,14 @@ export class Card {
   }
 
   //ставит лайк
-  _handleLike () {
+  _handleLike (res) {
     const likesCounter = this._element.querySelector('.cards__likes-counter');
     if (this._likeButton.classList.contains('cards__like-button_active')){
       this._likeButton.classList.remove('cards__like-button_active');
-      likesCounter.textContent = this._likesAmount;
+      likesCounter.textContent = res ;
     } else {
       this._likeButton.classList.add('cards__like-button_active');
-      likesCounter.textContent = this._likesAmount + 1;
+      likesCounter.textContent = res  + 1;
     }
   }
 

@@ -96,11 +96,17 @@ function createCard(data) {
    },
    handleLikeClick: (data, likes, myId) => {
      if (likes.some(el => el._id === myId)){
-     api.deleteLike(data);
-     card._handleLike();
+     api.deleteLike(data)
+     .then(res => {
+      card._handleLike(res.likes.length);
+     })
+     
    } else {
-    api.postLike(data);
-    card._handleLike();
+    api.postLike(data)
+    .then (res => {
+      card._handleLike(res.likes.length);
+    })
+    
    }
   }
   });
@@ -111,6 +117,7 @@ const popupSubmit = new PopupWithSubmit ('.popup_type_delete', {handleSubmit: (c
   .then(card._handleDelete())
    popupSubmit.close(); 
 }})
+
    
   
 

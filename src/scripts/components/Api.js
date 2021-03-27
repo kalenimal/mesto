@@ -112,6 +112,12 @@ deleteLike (cardId) {
    authorization: this._token
  }
  })
+ .then(res=> {
+  return res.json();
+})
+.then(res=> {
+  return res;
+})
 }
 
 //меняет аватар
