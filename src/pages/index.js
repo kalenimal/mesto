@@ -24,7 +24,7 @@ const job = document.querySelector('.profile__subtitle');
 const avatar = document.querySelector('.profile__image');
 const cardsList = document.querySelector('.cards__items');
 const editProfile = document.querySelector('.profile__avatar');
-let myId = {};
+export let myId = {};
 
 const configValidation = {
   formSelector: '.popup__form',
@@ -61,14 +61,20 @@ api.getIntlCards()
 //меняет картинку аватара
 function changeAvatar(data, imageSelector) {
 const image = document.querySelector(imageSelector)
-image.src = data.link
+image.src = data.avatar
 }
 
 //меняет аватар
 const newAvatar = new PopupWithForm('.popup_type_avatar', {handleFormSubmit: (data) => {
-  changeAvatar(data, '.profile__image')
+  api.changeAva(data)
+
+  .then (res => {
+    changeAvatar(res, '.profile__image')
+    newAvatar.close();
+    popupAvatar.querySelector('.add-button').value = 'сохранить'  
+  })
+  .then (popupAvatar.querySelector('.add-button').value = 'сохранение...')
   
-  newAvatar.close();
   }})
 
   newAvatar.setEventListeners();
@@ -88,20 +94,21 @@ function createCard(data) {
     popupSubmit.open();
     popupSubmit.setEventListeners(data) 
    },
-   handleLikeClick: (data, likes, ownerId) => {
-     if (likes.some(el => el._id === ownerId)){
+   handleLikeClick: (data, likes, myId) => {
+     if (likes.some(el => el._id === myId)){
      api.deleteLike(data);
+     card._handleLike();
    } else {
     api.postLike(data);
+    card._handleLike();
    }
   }
   });
 
   //создает класс попапа с сабмитом
 const popupSubmit = new PopupWithSubmit ('.popup_type_delete', {handleSubmit: (cardId) => {
-  api.deleteCard(cardId);
-  card._handleDelete();
-  
+  api.deleteCard(cardId)
+  .then(card._handleDelete())
    popupSubmit.close(); 
 }})
    
@@ -125,9 +132,12 @@ api.postCard(data)
 
 .then ((res) => {
    cardList.addItem(createCard(res)) ;
+   frmCard.close();
+   popupAdd.querySelector('.add-button').value = 'создать'
 })
+.then (popupAdd.querySelector('.add-button').value = 'сохранение...')
 
-frmCard.close();
+
 
 }})
 
@@ -139,9 +149,15 @@ const newUsrInf = new UserInfo ({name: name, info: job, avatar: avatar});
 
 //добавляет информацию о пользователе
 const userInfo = new PopupWithForm ('.popup_type_edit-profile', {handleFormSubmit: (data) => {
-  newUsrInf.setUserInfo(data);
-  api.changeProf(data);
-  userInfo.close();
+  api.changeProf(data)
+  .then (res => {
+    newUsrInf.setUserInfo(res);
+    userInfo.close();
+    popupEdit.querySelector('.add-button').value = 'сохранить'
+    
+  })
+  .then (popupEdit.querySelector('.add-button').value = 'сохранение...') 
+  
 }})
 
  

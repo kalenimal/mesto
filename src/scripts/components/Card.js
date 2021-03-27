@@ -1,3 +1,5 @@
+import {myId} from '../../pages/index.js'
+
 //класс для создания карты
 export class Card {
   constructor (data, cardSelector, {handleCardClick, handleTrashClick, handleLikeClick}) {
@@ -12,6 +14,7 @@ export class Card {
     this.handleTrashClick = handleTrashClick;
     this.handleLikeClick = handleLikeClick;
     this._element = this._getTemplate ();
+    this._likeButton = this._element.querySelector('.cards__like-button');
   } 
   
   //возвращает разметку
@@ -27,6 +30,11 @@ export class Card {
   
   //наполняет карту данными
   generateCard (id) {
+    if (this._data.likes.some(el => el._id === myId)){
+      this._likeButton.classList.add('cards__like-button_active');
+    } else {
+      this._likeButton.classList.remove('cards__like-button_active');
+    }
   const cardsImage = this._element.querySelector('.cards__image');
   this._element.querySelector('.cards__title').textContent = this._title;
   this._element.querySelector('.cards__likes-counter').textContent = this._likesAmount;
@@ -41,8 +49,21 @@ export class Card {
 
   //ставит лайк
   _handleLike () {
-    this._element.querySelector('.cards__like-button').classList.toggle('cards__like-button_active');
+    const likesCounter = this._element.querySelector('.cards__likes-counter');
+    if (this._likeButton.classList.contains('cards__like-button_active')){
+      this._likeButton.classList.remove('cards__like-button_active');
+      likesCounter.textContent = this._likesAmount;
+    } else {
+      this._likeButton.classList.add('cards__like-button_active');
+      likesCounter.textContent = this._likesAmount + 1;
+    }
   }
+
+  /* //удаляет лайк 
+  _deleteLike() {
+    this._element.querySelector('.cards__like-button').classList.remove('cards__like-button_active');
+    this._element.querySelector('.cards__likes-counter').textContent = this._likesAmount - 1;
+  } */
   
   //удаляет карту фронт
    _handleDelete () {
@@ -61,8 +82,8 @@ _deletTrash(id) {
   //навешивает слушатели 
   _setEventListeners (id) {
     this._element.querySelector('.cards__like-button').addEventListener('click',() => {
-     /* this._handleLike (); */
-     this.handleLikeClick(this._cardId, this._data.likes, this._owner);
+ /*     this._handleLike (); */
+     this.handleLikeClick(this._cardId, this._data.likes, myId);
     });
   if (id === this._owner) {
     this._element.querySelector('.cards__delet-button').addEventListener('click',()=> { this.handleTrashClick(this._cardId)})
