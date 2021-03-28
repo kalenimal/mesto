@@ -52,18 +52,16 @@ export class Card {
     const likesCounter = this._element.querySelector('.cards__likes-counter');
     if (this._likeButton.classList.contains('cards__like-button_active')){
       this._likeButton.classList.remove('cards__like-button_active');
-      likesCounter.textContent = res ;
+      likesCounter.textContent = res;
     } else {
       this._likeButton.classList.add('cards__like-button_active');
-      likesCounter.textContent = res  + 1;
+      likesCounter.textContent = res;
     }
   }
 
-  /* //удаляет лайк 
-  _deleteLike() {
-    this._element.querySelector('.cards__like-button').classList.remove('cards__like-button_active');
-    this._element.querySelector('.cards__likes-counter').textContent = this._likesAmount - 1;
-  } */
+getLikes(res) {
+  this._data = res;
+}
   
   //удаляет карту фронт
    _handleDelete () {

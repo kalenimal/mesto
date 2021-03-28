@@ -99,12 +99,14 @@ function createCard(data) {
      api.deleteLike(data)
      .then(res => {
       card._handleLike(res.likes.length);
+      card.getLikes(res)
      })
      
    } else {
     api.postLike(data)
     .then (res => {
       card._handleLike(res.likes.length);
+      card.getLikes(res)
     })
     
    }
