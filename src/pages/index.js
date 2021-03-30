@@ -1,7 +1,7 @@
 import {FormValidator} from "../scripts/components/FormValidator.js";
 import {Card } from '../scripts/components/Card.js';
 import {Section} from '../scripts/components/Section.js';
-import {Popup} from '../scripts/components/Popup.js';
+
 import {PopupWithImage} from '../scripts/components/PopupWithImage.js';
 import {PopupWithForm} from '../scripts/components/PopupWithForm.js';
 import {UserInfo} from '../scripts/components/UserInfo.js';
@@ -14,7 +14,6 @@ import {Api} from '../scripts/components/Api.js'
 const openButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit-profile');
-const popupImg = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupAvatar =document.querySelector('.popup_type_avatar')
 const nameInput = popupEdit.querySelector('input[name="name"]');
