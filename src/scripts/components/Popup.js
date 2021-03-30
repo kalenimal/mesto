@@ -1,3 +1,5 @@
+import {Close} from '../utils/constants.js'
+
 //открывает и закрывает попап
 export class Popup {
     constructor(popupSelector) {
@@ -14,7 +16,7 @@ export class Popup {
     document.removeEventListener('keydown',this._handleEscClose);
     }
     _handleEscClose(evt) {
-      if (evt.key === "Escape") {
+      if (evt.key === Close) {
         this.close();
       }
     }

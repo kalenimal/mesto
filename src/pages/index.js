@@ -36,25 +36,19 @@ const configValidation = {
 }; 
 
 export const apiConfig = {
-  authorization: 'a10c20b5-d633-4210-97f7-ee085e6f283f'
+  authorization: 'a10c20b5-d633-4210-97f7-ee085e6f283f',
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/'
 }
 
 //создает класс api
 const api = new Api (apiConfig);
 
-//берет данные о пользователе с сервера
-api.getUserInfo()
-.then ((res) => {
-  newUsrInf.setUserInfo(res);
-  myId = res._id;
+api.getAllData().then(data => {
+  const [userData, cardsData] = data;
+  newUsrInf.setUserInfo(userData);
+  myId = userData._id;
+  cardList.renderItems(cardsData.reverse());
 })
-
-//берет данные о карточкаx с сервера 
-api.getIntlCards()
-.then (res => {
-  cardList.renderItems(res.reverse());
-})
-
 
 
 

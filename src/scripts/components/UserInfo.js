@@ -13,13 +13,9 @@ export class UserInfo {
     return this._userData;
   }
   setUserInfo(newData) {
-    /* if (newData.hasOwnProperty('avatar')){ */
     this._name.textContent = newData.name;
     this._info.textContent = newData.about;
     this._avatar.src = newData.avatar;
-   /*  } */ /* else {
-      this._name.textContent = newData.name;
-    this._info.textContent = newData.about;
-    } */
+ 
   }
 }

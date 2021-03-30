@@ -1,10 +1,11 @@
 export class Api {
   constructor (config) {
     this._token = config.authorization;
+    this._url = config.url;
   }
 //получает информацию о пользователе с свервера
   getUserInfo() {
-     return fetch('https://mesto.nomoreparties.co/v1/cohort-21/users/me', {
+     return fetch(`${this._url}users/me`, {
       headers: {
         authorization: this._token
       }
@@ -21,7 +22,7 @@ export class Api {
 
 //получает данные карточек с сервера
 getIntlCards() {
-  return fetch ('https://mesto.nomoreparties.co/v1/cohort-21/cards', { 
+  return fetch (`${this._url}cards`, { 
     headers: {
       authorization: this._token
     }
@@ -34,9 +35,13 @@ getIntlCards() {
     return Promise.reject(`Ошибка: ${res.status}`)
   })
 } 
+//одновременно получает данные о картах и пользовпателе
+getAllData() {
+  return Promise.all([this.getUserInfo(), this.getIntlCards()])
+}
 //меняет данные пользователя на сервере
 changeProf(data) {
-  return fetch ('https://mesto.nomoreparties.co/v1/cohort-21/users/me', {
+  return fetch (`${this._url}users/me`, {
     method: 'PATCH',
     headers: {
       authorization: this._token,
@@ -58,7 +63,7 @@ changeProf(data) {
 
 //постит новую карту
 postCard(data) {
-  return fetch ('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
+  return fetch (`${this._url}cards`, {
     method: 'POST',
     headers: {
       authorization: this._token,
@@ -80,49 +85,57 @@ postCard(data) {
 
 // удаляет карту на сервере
 deleteCard(id) {
-  return fetch (`https://mesto.nomoreparties.co/v1/cohort-21/cards/${id}`, {
+  return fetch (`${this._url}cards/${id}`, {
     method: 'DELETE',
     headers: {
       authorization: this._token
     }
   })
+  .then (res=> {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`)
+  })
 }
 
 //ставит лайк 
 postLike(cardId) {
-  return fetch (`https://mesto.nomoreparties.co/v1/cohort-21/cards/likes/${cardId}`,
+  return fetch (`${this._url}cards/likes/${cardId}`,
  { method: 'PUT',
 headers: {
   authorization: this._token
 }
 })
-.then(res=> {
-  return res.json();
+.then (res=> {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`)
 })
-.then(res=> {
-  return res;
-})
+
 }
 
 //удаляет лайк
 deleteLike (cardId) {
-  return fetch (`https://mesto.nomoreparties.co/v1/cohort-21/cards/likes/${cardId}`,
+  return fetch (`${this._url}cards/likes/${cardId}`,
   { method: 'DELETE',
  headers: {
    authorization: this._token
  }
  })
- .then(res=> {
-  return res.json();
+ .then (res=> {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`)
 })
-.then(res=> {
-  return res;
-})
+
 }
 
 //меняет аватар
 changeAva(data) {
-  return fetch(`https://mesto.nomoreparties.co/v1/cohort-21/users/me/avatar`,
+  return fetch(`${this._url}users/me/avatar`,
   {
     method: 'PATCH',
     headers: {
@@ -139,5 +152,13 @@ changeAva(data) {
     }
     return Promise.reject(`Ошибка: ${res.status}`)
   })
+}
+
+_getJson(res) {
+    if (res.ok) {
+      return res.json()
+    } 
+    return Promise.reject(`Ошибка: ${res.status}`);
+  
 }
 }
