@@ -14,7 +14,7 @@
 .cards__footer{background-color:#fff;border-radius:0 0 10px 10px;padding:22px 15px 22px 21px;display:flex;justify-content:space-between;align-items:end}
 .cards__image{display:block;width:100%;height:282px;-o-object-fit:cover;object-fit:cover}
 .cards__title{font-style:normal;font-weight:900;font-size:24px;line-height:29px;color:#000;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;margin:0}
-.cards__like-button{display:block;background-image:url(b974bef89b0dd2895af6.svg);min-width:20.76px;min-height:18.13px;border:0;padding:0;background-color:#fff}.cards__like-button:hover{opacity:.5;cursor:pointer;transition:opacity 2s ease}
+.cards__like-button{display:block;background-image:url(b974bef89b0dd2895af6.svg);min-width:20.76px;min-height:18.13px;border:0;padding:0;background-color:#fff;outline:none}.cards__like-button:hover{opacity:.5;cursor:pointer;transition:opacity 2s ease}
 .footer{padding:67px 0 61px;max-width:880px;margin:auto}@media (max-width:640px){.footer{padding:48px 0 36px;max-width:282px}}
 .footer__copyright{font-style:normal;font-weight:400;font-size:18px;line-height:22px;color:#545454;margin:0}@media (max-width:640px){.footer__copyright{font-size:14px;line-height:17px}}
 .popup{display:flex;position:fixed;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);justify-content:center;align-items:center;visibility:hidden;opacity:0;transition:visibility .5s,opacity .5s linear}
